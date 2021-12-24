@@ -194,6 +194,7 @@ body {
   position: relative;
   margin-bottom: 20px;
   border-radius: 30px;
+  overflow:hidden;
 }
 .chat-msg {
   clear: both;

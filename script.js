@@ -37,20 +37,168 @@ $(function() {
     if(type == 'self'){
       str += msg;
     }
+   var data = [
+    {
+      "Keywords": "BTech Courses",
+      "Response": "Please Visit Below Link to understand B.Tech Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "BTech Programs",
+      "Response": "Please Visit Below Link to understand B.Tech Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "BTech",
+      "Response": "Please Visit Below Link to understand B.Tech Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "B Tech",
+      "Response": "Please Visit Below Link to understand B.Tech Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "Engineering",
+      "Response": "Please Visit Below Link to understand B.Tech Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "Optometry",
+      "Response": "Please Visit Below Link to understand Optometry Course Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "B.optom",
+      "Response": "Please Visit Below Link to understand Optometry Course Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "B.Com Programme",
+      "Response": "Please Visit Below Link to understand B.Com Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "Bcom",
+      "Response": "Please Visit Below Link to understand B.Com Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "Fine Arts",
+      "Response": "Please Visit Below Link to understand Arts Programs Handled by SASTRA.https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "Admission procedure",
+      "Response": "Please Visit Below Link to understand the complete admission procedure at SASTRA  https://sastra.edu/admissions.html"
+    },
+    {
+      "Keywords": "Student Web Interface",
+      "Response": "Please visit https://webstream.sastra.edu/sastrapwi/"
+    },
+    {
+      "Keywords": "SWI",
+      "Response": "Please visit https://webstream.sastra.edu/sastrapwi/"
+    },
+    {
+      "Keywords": "undergraduate",
+      "Response": "Please visit this link to understand about the UG Programs https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "UG",
+      "Response": "Please visit this link to understand about the UG Programs https://sastra.edu/admissions/undergraduate.html"
+    },
+    {
+      "Keywords": "postgraduate",
+      "Response": "Please visit this link to understand about the PG Programs https://sastra.edu/admissions/postgraduate.html"
+    },
+    {
+      "Keywords": "PG",
+      "Response": "Please visit this link to understand about the PG Programs https://sastra.edu/admissions/postgraduate.html"
+    },
+    {
+      "Keywords": "Quota",
+      "Response": "Please reach out to our Admission Team 04362 264101-108"
+    },
+    {
+      "Keywords": "NRI",
+      "Response": "Please reach out to our Admission Team 04362 264101-108"
+    },
+    {
+      "Keywords": "Kumbakonam campus",
+      "Response": "Please visit https://src.sastra.edu/"
+    },
+    {
+      "Keywords": "kumbakonam campus",
+      "Response": "Please visit https://src.sastra.edu/"
+    },
+    {
+      "Keywords": "tanjore",
+      "Response": "Please Visit https://sastra.edu/"
+    },
+    {
+      "Keywords": "fee",
+      "Response": "Please visit below site to understand the Fee structure for various Courses https://sastra.edu/admissions/tuition-fees/fee-structure.html"
+    },
+    {
+      "Keywords": "fees",
+      "Response": "Please visit below site to understand the Fee structure for various Courses https://sastra.edu/admissions/tuition-fees/fee-structure.html"
+    },
+    {
+      "Keywords": "btech fees",
+      "Response": "https://sastra.edu/admissions/tuition-fees/b-tech-m-tech-5-yrs-integrated-programmes.html"
+    },
+    {
+      "Keywords": "refund",
+      "Response": "Please reach out to our Admission Team 04362 264101-108"
+    },
+    {
+      "Keywords": "Hostel",
+      "Response": "There are 9 boys' hostel and 6 girls' hostels providing accommodation to over 4000 boys and 2400 girls."
+    },
+    {
+      "Keywords": "Hostel fee",
+      "Response": "Please Visit https://sastra.edu/admissions/hostel-fees.html"
+    },
+    {
+      "Keywords": "is phone allowed in sastra hostel",
+      "Response": "Yes, you can use phone in Sastra university but you can't use phone inside your class rooms"
+    },
+    {
+      "Keywords": "Does Sastra have uniform?",
+      "Response": "There is no uniform at SASTRA UNIVERSITY"
+    },
+    {
+      "Keywords": "Placement",
+      "Response": "Sastra has been ranked among the top engineering colleges in India as it has good infrastructure, placements and faculty"
+    }
+  ]
    
-    const map1 = new Map();
+   
+   
+  
+   
+   const map1 = new Map();
+   for(let i=0;i<data.length;i++)
+   {
+     map1.set(data[i]["Keywords"],data[i]["Response"])
+   }
+   /*
 map1.set('first', "Hello, I'm Sastra's helping bot! How can I help you");
 map1.set('admission', "Stream 1 – JEE-Main Score & Class XII Score : ,br.Admission to 50% of seats shall be based on normalised aggregate Class XII Scores and available JEE Main (2020/2021) scores taken together with 50% weightage each. Seats shall be filled based on the Ranks Secured by student");
 map1.set('bus',"There are bus facilities from Trichy and Tanjore.");
 map1.set('hostel',"There are nine hostels for boys and five for girls. First year B. Tech. students will be provided shared accommodation.");
 map1.set( 'academics', "SASTRA follows choice-based credit system, where students are free to choose their courses and faculty");
-if(type == 'user'){
+*/
+if(INDEX == 1){
+  str += "Hello I'm bot";
+}
+else if(type == 'user'){
   msg = msg.toLowerCase();
   var flag = 1;
+  /*
   for (const [key, value] of map1) {
     if(msg.includes(key)){
       str += value;
       flag = 0;
+      break;
+    }
+  }*/
+  for(let i = 0; i < data.length; i++){
+    if(msg.includes(data[i]["Keywords"].toLowerCase())){
+      str += data[i]["Response"];
+      flag = 0;
+      break;
     }
   }
   if(flag){
@@ -120,7 +268,19 @@ if(type == 'user'){
     $("#chat-circle").toggle('scale');
     $(".chat-box").toggle('scale');
   })
-  
+  /*
+  fetch('Data.txt')
+  .then(response => response.text())
+  .then(text => console.log(text))
+  */
+  $.ajax({
+    url: 'data.txt',
+    dataType: 'text',
+  }).done(successFunction);
+  function successFunction(data) {
+    var allRows = data.split(/\r?\n|\r/);
+    console.log(allRows);
+  }
 
 }
 )
