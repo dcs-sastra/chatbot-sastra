@@ -38,7 +38,27 @@ $(function() {
       str += msg;
     }
    
-    if(type == 'user'){
+    const map1 = new Map();
+map1.set('first', "Hello, I'm Sastra's helping bot! How can I help you");
+map1.set('admission', "Stream 1 – JEE-Main Score & Class XII Score : ,br.Admission to 50% of seats shall be based on normalised aggregate Class XII Scores and available JEE Main (2020/2021) scores taken together with 50% weightage each. Seats shall be filled based on the Ranks Secured by student");
+map1.set('bus',"There are bus facilities from Trichy and Tanjore.");
+map1.set('hostel',"There are nine hostels for boys and five for girls. First year B. Tech. students will be provided shared accommodation.");
+map1.set( 'academics', "SASTRA follows choice-based credit system, where students are free to choose their courses and faculty");
+if(type == 'user'){
+  msg = msg.toLowerCase();
+  var flag = 1;
+  for (const [key, value] of map1) {
+    if(msg.includes(key)){
+      str += value;
+      flag = 0;
+    }
+  }
+  if(flag){
+    str += "Sorry! Can't find your query. Try with someother keyboard."
+  }
+}
+
+ /*   if(type == 'user'){
       msg = msg.toLowerCase();
       var quesArr = msg.split(" ");
       if(msg == 'first' && INDEX == 1){
@@ -62,6 +82,7 @@ $(function() {
       else{
         str += "Sorry, I can't find what you are searching for. Try with some other keywords."}
     }
+    */
     
     str += "          <\/div>";
     str += "        <\/div>";
@@ -100,4 +121,6 @@ $(function() {
     $(".chat-box").toggle('scale');
   })
   
-})
+
+}
+)
