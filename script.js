@@ -165,9 +165,7 @@ $(function() {
   ]
    
    
-   
-  
-   
+
    const map1 = new Map();
    for(let i=0;i<data.length;i++)
    {
@@ -181,7 +179,7 @@ map1.set('hostel',"There are nine hostels for boys and five for girls. First yea
 map1.set( 'academics', "SASTRA follows choice-based credit system, where students are free to choose their courses and faculty");
 */
 if(INDEX == 1){
-  str += "Hello I'm bot";
+  str += "Hello! I'm Krish, How can I help you?";
 }
 else if(type == 'user'){
   msg = msg.toLowerCase();
@@ -194,6 +192,7 @@ else if(type == 'user'){
       break;
     }
   }*/
+
   for(let i = 0; i < data.length; i++){
     if(msg.includes(data[i]["Keywords"].toLowerCase())){
       str += data[i]["Response"];
@@ -202,7 +201,7 @@ else if(type == 'user'){
     }
   }
   if(flag){
-    str += "Sorry! Can't find your query. Try with someother keyboard."
+    str += "Sorry! Can't find the result. Please try some other keyword."
   }
 }
 
@@ -247,10 +246,6 @@ else if(type == 'user'){
     $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000); }
   
   
-  
-  
-  
-  
   $(document).delegate(".chat-btn", "click", function() {
     var value = $(this).attr("chat-value");
     var name = $(this).html();
@@ -268,19 +263,6 @@ else if(type == 'user'){
     $("#chat-circle").toggle('scale');
     $(".chat-box").toggle('scale');
   })
-  /*
-  fetch('Data.txt')
-  .then(response => response.text())
-  .then(text => console.log(text))
-  */
-  $.ajax({
-    url: 'data.txt',
-    dataType: 'text',
-  }).done(successFunction);
-  function successFunction(data) {
-    var allRows = data.split(/\r?\n|\r/);
-    console.log(allRows);
-  }
 
 }
 )
