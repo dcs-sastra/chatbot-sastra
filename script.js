@@ -8,33 +8,33 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init)
-var theData = 0;
+let theData = 0;
+
 function showInfo(results) {
-  const data = results.data;
-  theData = data;
+  theData = results.data;
 }
 
 $(function () {
-  var INDEX = 0;
+      let INDEX = 0;
 
-  $("#chat-submit").click(function (e) {
+      $("#chat-submit").click(function (e) {
     e.preventDefault();
-    var msg = $("#chat-input").val();
-    if (msg.trim() == '') {
+        const msg = $("#chat-input").val();
+        if (msg.trim() === '') {
       return false;
     }
     generate_message(msg, 'self');
-    var buttons = [
-      {
-        name: 'Existing User',
-        value: 'existing'
-      },
-      {
-        name: 'New User',
-        value: 'new'
-      }
-    ];
-    setTimeout(function () {
+        const buttons = [
+          {
+            name: 'Existing User',
+            value: 'existing'
+          },
+          {
+            name: 'New User',
+            value: 'new'
+          }
+        ];
+        setTimeout(function () {
       generate_message(msg, 'user');
     }, 1000)
 
@@ -42,69 +42,85 @@ $(function () {
 
   function generate_message(msg, type) {
     INDEX++;
-    var str = "";
+    let str = "";
     str += "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + "\">";
     str += "          <span class=\"msg-avatar\">";
-    if (type == 'user') {
-      str += "            <img src=\".\/Images\/saslogo.png\">";
+    if (type === 'user') {
+      str += "            <img src='Images/saslogo.png' alt='logo'>";
     }
-    if (type == 'self') {
-      str += "            <img src=\".\/Images\/user.png\">";
+    if (type === 'self') {
+      str += "            <img src='Images/user.png' alt='user'>";
     }
     str += "          <\/span>";
     str += "          <div class=\"cm-msg-text\">";
-    if (type == 'self') {
+    if (type === 'self') {
       str += msg;
     }
 
-    if (INDEX == 1) {
+    if (INDEX === 1) {
       str += "Hello! I'm Krish, How can I help you?";
     }
-    else if (type == 'user') {
+    else if (type === 'user') {
       msg = msg.toLowerCase();
-      var flag = 1;
+      let results = [];
+      let maxWordCount = 0;
+      let maxWordKey;
+
 
       for (let i = 0; i < theData.length; i++) {
-        if (msg.includes(theData[i]["Keywords"].toLowerCase())) {
-          var hypLink = theData[i]["Response"].split(" ");
-          for(let link = 0; link < hypLink.length; link++){
-            if(hypLink[link].startsWith("http")){
-              str += "<a href=\"" + hypLink[link] +"\">Click here.<\/a>"
+        if(theData[i]["Keywords"].toLowerCase().split(" ").every(r => msg.split(" ").includes(r))) {
+          let tempStr = "";
+          const hypLink = theData[i]["Response"].split(" ");
+          for(let link = 0; link < hypLink.length; link++) {
+            if(hypLink[link].startsWith("http")) {
+              tempStr += "<a href=\"" + hypLink[link] +"\">Click here.<\/a>"
             }
             else{
-              str += hypLink[link] + " ";
+              tempStr += hypLink[link] + " ";
             }
           }
-          flag = 0;
-          break;
+          results.push({"keyword": theData[i]["Keywords"].toLowerCase(), "response": tempStr});
         }
       }
-      if (flag) {
+      if (results.length <= 0) {
         str += "Sorry! Can't find the result. Please try some other keyword."
+      } else {
+        results.forEach(result => {
+          if(maxWordCount < result["keyword"].split(" ").length) {
+            maxWordCount = Math.max(maxWordCount, result["keyword"].split(" ").length);
+            maxWordKey = result["keyword"];
+          }
+        });
+        results.forEach(result => {
+          if(result["keyword"] === maxWordKey) {
+            str += result["response"];
+          }
+        })
       }
     }
 
     str += "          <\/div>";
     str += "        <\/div>";
 
-    if (msg == 'first' && INDEX == 1) {      // To display the welcome message 
+    if (msg === 'first' && INDEX === 1) {      // To display the welcome message
       $(".chat-logs").append(str);
     }
-    else if (msg != 'first' && INDEX > 1) {  // To avoid displaying the welcome message again
+    else if (msg !== 'first' && INDEX > 1) {  // To avoid displaying the welcome message again
       $(".chat-logs").append(str);
     }
 
     $("#cm-msg-" + INDEX).hide().fadeIn(300);
-    if (type == 'self') {
+    if (type === 'self') {
       $("#chat-input").val('');
     }
-    $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+    let chatLogs = $(".chat-logs");
+    chatLogs.stop().animate({ scrollTop: chatLogs[0].scrollHeight }, 1000);
   }
 
 
   $(document).delegate(".chat-btn", "click", function () {
-    var value = $(this).attr("chat-value");
-    var name = $(this).html();
+    const value = $(this).attr("chat-value");
+    const name = $(this).html();
     $("#chat-input").attr("disabled", false);
     generate_message(name, 'self');
   })
