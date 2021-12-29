@@ -58,7 +58,7 @@ $(function () {
     }
 
     if (INDEX === 1) {
-      str += "Hello! I'm Krish, How can I help you?";
+      str += "Namaste!";
     }
     else if (type === 'user') {
       msg = msg.toLowerCase();
@@ -83,7 +83,7 @@ $(function () {
         }
       }
       if (results.length <= 0) {
-        str += "Sorry! Can't find the result. Please try some other keyword."
+        str += "Please rephrase or call us to get details from our support executive.";
       } else {
         results.forEach(result => {
           if(maxWordCount < result["keyword"].split(" ").length) {
